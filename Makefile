@@ -13,7 +13,7 @@ clean:
 	rm -rf Cargo.lock target/
 
 split-sum-c: split-sum.c
-	cc -O3 -o split-sum-c split-sum.c
+	cc -O3 -flto -o split-sum-c split-sum.c
 
 target/release/split-sum: src/main.rs
 	cargo build -r
@@ -25,7 +25,7 @@ split-sum-objc: split-sum.m
 	cc -ObjC -framework Foundation -O3 -o split-sum-objc split-sum.m
 
 split-sum-c++: split-sum.cpp
-	c++ -std=c++11 -O3 -o split-sum-c++ split-sum.cpp 
+	c++ -std=c++20 -O3 -o split-sum-c++ split-sum.cpp 
 
 splitSum.class: splitSum.java
 	javac splitSum.java
