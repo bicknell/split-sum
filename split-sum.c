@@ -17,16 +17,13 @@ int splitSum(int* nums, int numsSize, int* result[2], int returnColumnSizes[2]) 
         return 1;
     }
 
-
     // Sum until the indexes meet in the middle.
     while (right != left) {
         if (totalLeft <= totalRight) {
             totalLeft += nums[left++];
-            continue;
+        } else {
+            totalRight += nums[right--];
         }
-
-        // otherwise totalLeft > totalRight
-        totalRight += nums[right--];
     }
 
     // Check middle in the left group.

@@ -16,12 +16,10 @@ NSArray<NSArray<NSNumber *> *> *splitSum(NSArray<NSNumber *> *nums) {
         if (totalLeft <= totalRight) {
             totalLeft += [nums[left] integerValue];
             left++;
-            continue;
+        } else {
+            totalRight += [nums[right] integerValue];
+            right--;
         }
-
-        // otherwise totalLeft > totalRight
-        totalRight += [nums[right] integerValue];
-        right--;
     }
 
     // Check middle in the left group.

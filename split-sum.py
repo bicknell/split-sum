@@ -1,6 +1,6 @@
 
-from typing import *
-from timeit import *
+from typing import List
+from timeit import Timer
 
 def splitSum(nums: List[int]) -> List[List[int]]:
 
@@ -18,11 +18,9 @@ def splitSum(nums: List[int]) -> List[List[int]]:
         if totalLeft <= totalRight:
             totalLeft = totalLeft + nums[left]
             left = left + 1
-            continue
-
-        # otherwise totalLeft > totalRight
-        totalRight = totalRight + nums[right]
-        right = right - 1
+        else:
+            totalRight = totalRight + nums[right]
+            right = right - 1
 
     # Check middle in left group.
     if (totalLeft + nums[left]) == totalRight:

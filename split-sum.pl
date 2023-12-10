@@ -20,12 +20,9 @@ sub splitSum(@) {
     while ($right != $left) {
         if ($totalLeft <= $totalRight) {
             $totalLeft = $totalLeft + $nums[$left++];
-            next;
+        } else {
+            $totalRight = $totalRight + $nums[$right--];
         }
-
-        # otherwise $totalLeft > $totalRight
-        $totalRight = $totalRight + $nums[$right--];
-        next;
     }
 
     # Check middle in left group.

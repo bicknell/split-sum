@@ -14,12 +14,10 @@ function splitSum(nums) {
         if (totalLeft <= totalRight) {
             totalLeft += nums[left];
             left += 1;
-            continue;
+        } else {
+            totalRight += nums[right];
+            right -= 1;
         }
-
-        // otherwise totalLeft > totalRight
-        totalRight += nums[right];
-        right -= 1;
     }
 
     // Check middle in left group.

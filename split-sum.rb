@@ -12,12 +12,10 @@ def splitSum(nums)
         if totalLeft <= totalRight
             totalLeft += nums[left]
             left += 1
-            next
-            end
-
-        # otherwise totalLeft > totalRight
-        totalRight += nums[right]
-        right -= 1
+        else
+            totalRight += nums[right]
+            right -= 1
+        end
     end
 
     # Check middle in the left group.

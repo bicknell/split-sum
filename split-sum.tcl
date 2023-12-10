@@ -30,13 +30,10 @@ proc splitSum {nums} {
         if {$totalLeft <= $totalRight} {
             set totalLeft [expr {$totalLeft + [lindex $nums $left]}]
             incr left
-            continue
+        } else {
+            set totalRight [expr {$totalRight + [lindex $nums $right]}]
+            incr right -1
         }
-
-        # otherwise $totalLeft > $totalRight
-        set totalRight [expr {$totalRight + [lindex $nums $right]}]
-        incr right -1
-        continue
     }
 
     # Check middle in the left group.

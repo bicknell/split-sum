@@ -16,14 +16,10 @@ std::vector<std::vector<int> > splitSum(const std::vector<int>& nums) {
     // Sum until the indexes meet in the middle.
     while (right != left) {
         if (totalLeft <= totalRight) {
-            totalLeft += nums[left];
-            left++;
-            continue;
+            totalLeft += nums[left++];
+        } else {
+            totalRight += nums[right--];
         }
-
-        // otherwise totalLeft > totalRight
-        totalRight += nums[right];
-        right--;
     }
 
     // Check middle in the left group.
