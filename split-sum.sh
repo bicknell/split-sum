@@ -17,12 +17,10 @@ splitSum() {
         if [[ "$totalLeft" -le "$totalRight" ]]; then
             totalLeft=$((totalLeft + ${nums[$left]}))
             left=$((left + 1))
-            continue
+        else
+            totalRight=$((totalRight + ${nums[$right]}))
+            right=$((right - 1))
         fi
-
-        # otherwise "$totalLeft" -ge "$totalRight"
-        totalRight=$((totalRight + ${nums[$right]}))
-        right=$((right - 1))
     done
 
     # Check middle in the left group.
@@ -45,16 +43,16 @@ splitSum() {
 
 # Global so they aren't reallcoated on the stack each invocation.
 cases=(" " \
-       " 100 " \
-       " 99 99 " \
-       " 98 1 99" \
-       " 99 1 98" \
-       " 1 2 3 0" \
-       " 1 2 3 5" \
-       " 1 2 2 1 0" \
-       " 10 11 12 16 17" \
-       " 1 1 1 1 1 1 6 " \
-       " 6 1 1 1 1 1 1 " \
+       "100" \
+       "99 99" \
+       "98 1 99" \
+       "99 1 98" \
+       "1 2 3 0" \
+       "1 2 3 5" \
+       "1 2 2 1 0" \
+       "10 11 12 16 17" \
+       "1 1 1 1 1 1 6" \
+       "6 1 1 1 1 1 1" \
       )
 
 # Test cases
