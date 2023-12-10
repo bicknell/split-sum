@@ -1,8 +1,7 @@
 
 function splitSum(nums) {
     let totalLeft = 0;
-    let totalRight = 0;
-    let left = 0;
+    let totalRight = 0; let left = 0;
     let right = nums.length - 1;
 
     // Empty array, or single element array.
@@ -54,7 +53,7 @@ function testCases(toScreen) {
 
     for (const c of cases) {
         if (toScreen) {
-            console.log("javascript: ", c, " -> ", splitSum(c));
+            console.log("javascript: ", JSON.stringify(c), " -> ", JSON.stringify(splitSum(c)));
         } else {
             splitSum(c);
         }
