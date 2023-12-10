@@ -10,7 +10,7 @@ all: $(compiled_programs)
 
 clean:
 	rm -f split-sum-c split-sum-swift split-sum-objc split-sum-c++ splitSum.class
-	rm -rf target/
+	rm -rf Cargo.lock target/
 
 split-sum-c: split-sum.c
 	cc -O3 -o split-sum-c split-sum.c
