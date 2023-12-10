@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
+#include <string.h>
 
 int splitSum(int* nums, int numsSize, int* result[2], int returnColumnSizes[2]) {
     int totalLeft = 0;
@@ -35,26 +36,18 @@ int splitSum(int* nums, int numsSize, int* result[2], int returnColumnSizes[2]) 
         left++;
         right++;
         returnColumnSizes[0] = left;
-        for (int i = 0; i <= left; ++i) {
-            result[0][i] = nums[i];
-        }
+	memcpy(result[0], nums, left * sizeof(int));
         returnColumnSizes[1] = numsSize - right;
-        for (int i = 0; i < (numsSize - right); ++i) {
-            result[1][i] = nums[right + i];
-        }
+        memcpy(result[1], nums + right, (numsSize - right) * sizeof(int));
         return 0;
     }
 
     // Check middle in the right group.
     if (totalLeft == totalRight + nums[right]) {
         returnColumnSizes[0] = left;
-        for (int i = 0; i <= left; ++i) {
-            result[0][i] = nums[i];
-        }
+        memcpy(result[0], nums, left * sizeof(int));
         returnColumnSizes[1] = numsSize - right;
-        for (int i = 0; i < numsSize - right; i++) {
-            result[1][i] = nums[right + i];
-        }
+        memcpy(result[1], nums + right, (numsSize - right) * sizeof(int));
         return 0;
     }
     returnColumnSizes[0] = 0;
@@ -105,8 +98,8 @@ void testCases(int toScreen) {
 
 int main() {
     // Pre-allocate return space.
-    result[0] = (int*)malloc(200 * sizeof(int));
-    result[1] = (int*)malloc(200 * sizeof(int));
+    result[0] = (int*)malloc(sizeof(cases[0]) / sizeof(cases[0][0]));
+    result[1] = (int*)malloc(sizeof(cases[0]) / sizeof(cases[0][0]));
 
     testCases(1);
 
