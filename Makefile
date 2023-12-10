@@ -71,6 +71,6 @@ runall: $(compiled_programs)
 	@cc -ObjC --version | head -1
 	./split-sum-objc
 	@printf -- "------------------\n"
-	@java -version | head -1
+	@java -version 2>&1 | head -1
 	java splitSum
 	
