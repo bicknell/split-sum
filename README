@@ -82,7 +82,7 @@ Arrays:
      There appears to be no agreement on how array slices should
      work.
 
-	 Go, Rust, Python 3, PHP, C++, Objective-C, Java and
+	 Go, Rust, Python 3, PHP, C++, Objective-C, LISP, Java and
 	 JavaScript all return a list exclusive of the end position.
 	 E.g.  Slicing [ 1 2 3 4 5 ] with a start of 1 and an end
 	 of 3 results in [ 2 3 ].
@@ -113,8 +113,9 @@ Rank   Seconds Language    Slower Start entries from          Comment
 11      5.040  Ruby        68     0     [x]   ... [y]         Built in arrays, untyped.
 12      7.622  Python 3    103    0     [x]   ... [y-1]       Built in arrays, of int.
 13     18.680  Perl 5      252    0     [x]   ... [y]         Built in arrays, untyped.
-14     30.740  PostgreSQL  415    0     [x]   ... [y]         Built in arrays, of int.
-15    990.000  ZSH         13378  1     [x]   ... [y]         Built in arrays, untyped.
-16   2350.000  BASH        31756  0     [x]   ... [y]         Built in arrays, untyped.
+14     30.488  PostgreSQL  415    0     [x]   ... [y]         Built in arrays, of int.
+15     48.245  LISP        652    0     [x]   ... [y-1]       Built in lists, untyped.
+16    990.000  ZSH         13378  1     [x]   ... [y]         Built in arrays, untyped.
+17   2350.000  BASH        31756  0     [x]   ... [y]         Built in arrays, untyped.
 
 The file benchmark-run.txt contains the run used to make this table.

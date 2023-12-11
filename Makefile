@@ -77,4 +77,7 @@ runall: $(compiled_programs)
 	@psql --version
 	@psql -q -f split-sum-create.sql
 	@psql -c '\timing' -q -t -f split-sum-query.sql | sed -e 's/^.*:/sql: /' -e 's/)/ seconds/'
+	@printf -- "------------------\n"
+	@clisp --version | head -1
+	clisp split-sum.lsp
 	
