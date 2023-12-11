@@ -73,4 +73,8 @@ runall: $(compiled_programs)
 	@printf -- "------------------\n"
 	@java -version 2>&1 | head -1
 	java splitSum
+	@printf -- "------------------\n"
+	@psql --version
+	@psql -q -f split-sum-create.sql
+	@psql -c '\timing' -q -t -f split-sum-query.sql | sed -e 's/^.*:/sql: /' -e 's/)//'
 	
