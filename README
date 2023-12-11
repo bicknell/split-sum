@@ -82,10 +82,10 @@ Arrays:
      There appears to be no agreement on how array slices should
      work.
 
-	 Go, Rust, Python 3, C++, Objective-C, Java and JavaScript
-	 all return a list exclusive of the end position.  E.g.
-	 Slicing [ 1 2 3 4 5 ] with a start of 1 and an end of 3
-	 results in [ 2 3 ].
+	 Go, Rust, Python 3, PHP, C++, Objective-C, Java and
+	 JavaScript all return a list exclusive of the end position.
+	 E.g.  Slicing [ 1 2 3 4 5 ] with a start of 1 and an end
+	 of 3 results in [ 2 3 ].
 
 	 TCL, Ruby, Swift, Perl 5, BASH, and ZSH all return a list
 	 inclusive of the end position.  E.g. Slicing [ 1 2 3 4 5 ]
@@ -107,12 +107,13 @@ Rank   Seconds Language    Slower Start entries from          Comment
 5       0.622  JavaScript  8.4    0     [x]   ... [y-1]       Built in arrays, of int.
 6       1.935  TCL         26     0     [x]   ... [y]         Built in arrays untyped.
 7       1.997  C++         27     0     [x]   ... [y-1]       vector of vector of int.
-8       2.912  Swift       39     0     [x]   ... [y]         Built in arrays of int.
-9       4.404  Objective-C 60     0     [x]   ... [y-1]       NSArray of NSArray of NSNumber.
-10      5.040  Ruby        68     0     [x]   ... [y]         Built in arrays, untyped.
-11      7.622  Python 3    103    0     [x]   ... [y-1]       Built in arrays, of int.
-12     18.680  Perl 5      252    0     [x]   ... [y]         Built in arrays, untyped.
-13    990.000  ZSH         13378  1     [x]   ... [y]         Built in arrays, untyped.
-14   2350.000  BASH        31756  0     [x]   ... [y]         Built in arrays, untyped.
+8       2.635  PHP         35     0     [x]   ... [y-1]       Built in arrays, untyped.
+9       2.912  Swift       39     0     [x]   ... [y]         Built in arrays of int.
+10      4.404  Objective-C 60     0     [x]   ... [y-1]       NSArray of NSArray of NSNumber.
+11      5.040  Ruby        68     0     [x]   ... [y]         Built in arrays, untyped.
+12      7.622  Python 3    103    0     [x]   ... [y-1]       Built in arrays, of int.
+13     18.680  Perl 5      252    0     [x]   ... [y]         Built in arrays, untyped.
+14    990.000  ZSH         13378  1     [x]   ... [y]         Built in arrays, untyped.
+15   2350.000  BASH        31756  0     [x]   ... [y]         Built in arrays, untyped.
 
 The file benchmark-run.txt contains the run used to make this table.
