@@ -122,7 +122,7 @@ LOC:
 
     Lines Filename              Lanugage
        58 split-sum.py          Python 3
-       58 split-sum.lsp         LISP
+       59 split-sum.lsp         LISP
        68 split-sum-create.sql  SQL (Two files together.)
           split-sum-query.sql
        69 split-sum.js          JavaScript
@@ -130,14 +130,14 @@ LOC:
        72 split-sum.rb          Ruby
        73 split-sum.php         PHP
        78 split-sum.tcl         TCL
-       80 split-sum.go          Go
        81 split-sum.swift       Swift
+       82 split-sum.go          Go
        82 splitSum.java         Java
        83 split-sum.zsh         ZSH
        86 split-sum.sh          SH
        88 src/main.rs           Rust
-       91 split-sum.m           Objective-C
-       92 split-sum.cpp         C++
+       93 split-sum.m           Objective-C
+      100 split-sum.cpp         C++
       111 split-sum.c           C
 
 Results:
