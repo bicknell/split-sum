@@ -57,6 +57,7 @@ Software Needed:
           - brew install clisp
           - brew install php
           - brew install postgressql
+          - brew install r
 
       Note, PostgreSQL must be started and stopped as needed:
           - brew services start postgresql@14
@@ -107,7 +108,7 @@ Arrays:
 	 E.g.  Slicing [ 1 2 3 4 5 ] with a start of 1 and an end
 	 of 3 results in [ 2 3 ].
 
-	 TCL, Ruby, Swift, Perl 5, PostgreSQL, BASH, and ZSH all
+	 TCL, Ruby, Swift, Perl 5, R, PostgreSQL, BASH, and ZSH all
 	 return a list inclusive of the end position.  E.g. Slicing
 	 [ 1 2 3 4 5 ] with a start of 1 and an end of 3 results
 	 in [ 2 3 4 ].
@@ -161,10 +162,11 @@ Results:
     11      4.907  Ruby         68.1  0     [x]   ... [y]         Built in arrays, untyped.
     12      7.361  Python 3    102.2  0     [x]   ... [y-1]       Built in arrays, of int.
     13     17.650  Perl 5      245.1  0     [x]   ... [y]         Built in arrays, untyped.
-    14     33.493  PostgreSQL  465.1  0     [x]   ... [y]         Built in arrays, of int.
-    15     46.861  LISP        650.8  0     [x]   ... [y-1]       Built in lists, untyped.
-    16    860.000  ZSH         11944  1     [x]   ... [y]         Built in arrays, untyped.
-    17   2350.000  BASH        32638  0     [x]   ... [y]         Built in arrays, untyped.
+    14     21.847  R           303.4  1     [x]   ... [y]         Built in lists, untyped.
+    15     33.493  PostgreSQL  465.1  0     [x]   ... [y]         Built in arrays, of int.
+    16     46.861  LISP        650.8  0     [x]   ... [y-1]       Built in lists, untyped.
+    17    860.000  ZSH         11944  1     [x]   ... [y]         Built in arrays, untyped.
+    18   2350.000  BASH        32638  0     [x]   ... [y]         Built in arrays, untyped.
 
     The file benchmark-run.txt contains the run used to make this table.
 

@@ -74,6 +74,9 @@ runall: $(compiled_programs)
 	perl --version | head -2 | tail -1
 	perl split-sum.pl
 	printf -- "------------------\n"
+	r --version | head -1
+	r --no-save --no-echo -f split-sum.r
+	printf -- "------------------\n"
 	psql --version
 	psql -q -t -f split-sum-create.sql
 	psql -c '\timing' -q -t -f split-sum-query.sql | sed -e 's/^.*:/sql: /' -e 's/)/ seconds/'
