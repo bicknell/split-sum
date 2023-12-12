@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-NSArray<NSArray<NSNumber *> *> *splitSum(NSArray<NSNumber *> *nums) {
+NSArray<NSArray<NSNumber *> *> *splitSum(const NSArray<NSNumber *> *nums) {
     NSInteger totalLeft = 0;
     NSInteger totalRight = 0;
     NSInteger left = 0;
@@ -52,7 +52,7 @@ void testCases(bool toScreen) {
     @autoreleasepool {
         for (NSArray<NSNumber *> *c in cases) {
             if (toScreen) {
-                NSMutableString *outStr = [NSMutableString stringWithString:@"{"];
+                NSMutableString *outStr = [NSMutableString stringWithString:@"objective-c: {"];
 
                 for (NSNumber *number in c) {
                     [outStr appendFormat:@" %@,", number];
@@ -66,7 +66,7 @@ void testCases(bool toScreen) {
                     }
                     [outStr appendString:@"}"];
                 }
-                NSLog(@"objective-c: %@", outStr);
+                puts([outStr UTF8String]);
             } else {
                 splitSum(c);
             }
@@ -84,7 +84,7 @@ int main(int argc, const char * argv[]) {
         }
         NSDate *endTime = [NSDate date];
         NSTimeInterval elapsedTime = [endTime timeIntervalSinceDate:startTime];
-        NSLog(@"objective-c: %.3f seconds", elapsedTime);
+        puts([ [NSString stringWithFormat:@"objective-c: %.3f seconds", elapsedTime ] UTF8String]);
     }
     return 0;
 }
