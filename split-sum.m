@@ -54,18 +54,20 @@ void testCases(bool toScreen) {
             if (toScreen) {
                 NSMutableString *outStr = [NSMutableString stringWithString:@"objective-c: {"];
 
-                for (NSNumber *number in c) {
-                    [outStr appendFormat:@" %@,", number];
-                }
-                [outStr appendString:@" } -> "];
+                [c enumerateObjectsUsingBlock:^(NSNumber *number, NSUInteger i, BOOL *stop) {
+                    [outStr appendFormat:@"%s%@", i ? ", " : "", number];
+                }];
 
-                for (NSArray<NSArray<NSNumber *> *> *result in splitSum(c)) {
-                    [outStr appendString:@"{ "];
-                    for (NSArray<NSNumber *> *n in result) {
-                        [outStr appendFormat:@"%@, ", n];
-                    }
+                [outStr appendString:@"} -> {"];
+
+                [splitSum(c) enumerateObjectsUsingBlock:^(NSArray *result, NSUInteger i, BOOL *stop) {
+                    [outStr appendFormat:@"%s{", i ? ", " : ""];
+                    [result enumerateObjectsUsingBlock:^(NSNumber *number, NSUInteger j, BOOL *stop) {
+                        [outStr appendFormat:@"%s%@", j ? ", " : "", number];
+                    }];
                     [outStr appendString:@"}"];
-                }
+                }];
+                [outStr appendString:@"}"];
                 puts([outStr UTF8String]);
             } else {
                 splitSum(c);

@@ -30,54 +30,60 @@ split-sum-c++: split-sum.cpp
 splitSum.class: splitSum.java
 	javac splitSum.java
 
+.SILENT: runall
 runall: $(compiled_programs)
-	@python3 --version
-	python3 split-sum.py
-	@printf -- "------------------\n"
-	@perl --version | head -2 | tail -1
-	perl split-sum.pl
-	@printf -- "------------------\n"
-	@go version
-	go run split-sum.go
-	@printf -- "------------------\n"
-	@printf -- "TCL version "
-	@printf -- 'puts $$tcl_version' | tclsh
-	tclsh split-sum.tcl
-	@printf -- "------------------\n"
-	@ruby --version
-	ruby split-sum.rb
-	@printf -- "------------------\n"
-	@node --version
-	node split-sum.js
-	@printf -- "------------------\n"
-	@bash --version | head -1
-	bash split-sum.sh
-	@printf -- "------------------\n"
-	@zsh --version
-	zsh split-sum.zsh
-	@printf -- "------------------\n"
-	@cc --version | head -1
+	printf -- "------------------\n"
+	cc --version | head -1
 	./split-sum-c
-	@printf -- "------------------\n"
-	@c++ --version | head -1
-	./split-sum-c++
-	@printf -- "------------------\n"
-	@rustc --version
-	target/release/split-sum
-	@printf -- "------------------\n"
-	@swiftc --version | head -1
-	./split-sum-swift
-	@printf -- "------------------\n"
-	@cc -ObjC --version | head -1
-	./split-sum-objc
-	@printf -- "------------------\n"
-	@java -version 2>&1 | head -1
+	printf -- "------------------\n"
+	java -version 2>&1 | head -1
 	java splitSum
-	@printf -- "------------------\n"
-	@psql --version
-	@psql -q -f split-sum-create.sql
-	@psql -c '\timing' -q -t -f split-sum-query.sql | sed -e 's/^.*:/sql: /' -e 's/)/ seconds/'
-	@printf -- "------------------\n"
-	@clisp --version | head -1
+	printf -- "------------------\n"
+	go version
+	go run split-sum.go
+	printf -- "------------------\n"
+	rustc --version
+	target/release/split-sum
+	printf -- "------------------\n"
+	printf "JavaScript (node.js) version"
+	node --version
+	node split-sum.js
+	printf -- "------------------\n"
+	printf -- "TCL version "
+	printf -- 'puts $$tcl_version' | tclsh
+	tclsh split-sum.tcl
+	printf -- "------------------\n"
+	c++ --version | head -1
+	./split-sum-c++
+	printf -- "------------------\n"
+	php --version | head -1
+	php split-sum.php
+	printf -- "------------------\n"
+	swiftc --version | head -1
+	./split-sum-swift
+	printf -- "------------------\n"
+	cc -ObjC --version | head -1
+	./split-sum-objc
+	printf -- "------------------\n"
+	ruby --version
+	ruby split-sum.rb
+	printf -- "------------------\n"
+	python3 --version
+	python3 split-sum.py
+	printf -- "------------------\n"
+	perl --version | head -2 | tail -1
+	perl split-sum.pl
+	printf -- "------------------\n"
+	psql --version
+	psql -q -t -f split-sum-create.sql
+	psql -c '\timing' -q -t -f split-sum-query.sql | sed -e 's/^.*:/sql: /' -e 's/)/ seconds/'
+	printf -- "------------------\n"
+	clisp --version | head -1
 	clisp split-sum.lsp
+	printf -- "------------------\n"
+	zsh --version
+	zsh split-sum.zsh
+	printf -- "------------------\n"
+	bash --version | head -1
+	bash split-sum.sh
 	

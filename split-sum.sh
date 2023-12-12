@@ -9,7 +9,7 @@ splitSum() {
 
     # Empty array or single element array.
     if [[ "$right" -lt 1 ]]; then
-        echo "[] []"
+        echo "\"\" \"\""
         return
     fi
 
@@ -27,17 +27,17 @@ splitSum() {
     if [[ "$((totalLeft + ${nums[$left]}))" -eq "$totalRight" ]]; then
         leftArray=("${nums[@]:0:$((left + 1))}")
         rightArray=("${nums[@]:$((right + 1))}")
-        echo "[${leftArray[@]}] [${rightArray[@]}]"
+        echo "\"${leftArray[@]}\" \"${rightArray[@]}\""
         return
     fi
     # Check middle in the right group.
     if [[ "$totalLeft" -eq "$((totalRight + ${nums[$right]}))" ]]; then
         leftArray=("${nums[@]:0:$left}")
         rightArray=("${nums[@]:$right}")
-        echo "[${leftArray[@]}] [${rightArray[@]}]"
+        echo "\"${leftArray[@]}\" \"${rightArray[@]}\""
         return
     fi
-    echo "[] []"
+    echo "\"\" \"\""
     return
 }
 
@@ -66,7 +66,7 @@ testCases() {
         if [[ -z "$toScreen" ]]; then
             splitSum $c > /dev/null
         else 
-            echo "bash: [ $c ] -> [ $(splitSum $c) ]"
+            echo "bash: \"$c\" -> $(splitSum $c)"
         fi
     done
 }

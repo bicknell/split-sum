@@ -8,7 +8,7 @@ splitSum() {
     right=$#
 
     if [[ $right -lt 2 ]]; then
-      echo "[] []"
+      echo '" " " "'
       return
     fi
 
@@ -26,17 +26,17 @@ splitSum() {
     if [ $(($totalLeft + ${nums[$left]})) -eq $totalRight ]; then
       leftArray=("${nums[@]:1:$left}")
       rightArray=("${nums[@]:$right}")
-      echo "[${leftArray[@]}] [${rightArray[@]}]"
+      echo "\"${leftArray[@]}\" \"${rightArray[@]}\""
       return
     fi
     # Check middle in the right group.
     if [[ $totalLeft -eq $(($totalRight + ${nums[$right]})) ]]; then
       leftArray=("${nums[@]:1:$((left - 1))}")
       rightArray=("${nums[@]:$((right - 1))}")
-      echo "[${leftArray[@]}] [${rightArray[@]}]"
+      echo "\"${leftArray[@]}\" \"${rightArray[@]}\""
       return
     fi
-    echo "[] []"
+    echo '" " " "'
     return
 }
 
@@ -54,7 +54,7 @@ cases=(" " \
        "6 1 1 1 1 1 1" \
       )
 
-// Test cases
+# Test cases
 testCases() {
     toScreen=("$@")
 
@@ -62,7 +62,7 @@ testCases() {
         if [[ -z "$toScreen" ]]; then
             splitSum ${=c} > /dev/null
         else
-            echo "zsh: [ $c ] -> [ $(splitSum ${=c}) ]"
+            echo "zsh: \"$c\" -> $(splitSum ${=c})"
         fi
     done
 }

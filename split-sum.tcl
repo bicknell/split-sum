@@ -1,16 +1,16 @@
 
 # Global so they aren't reallcoated on the stack each invocation.
-variable cases { { }
-                 { 100 }
-                 { 99 99 }
-                 { 98 1 99}
-                 { 99 1 98}
-                 { 1 2 3 0}
-                 { 1 2 3 5}
-                 { 1 2 2 1 0}
-                 { 10 11 12 16 17}
-                 { 1 1 1 1 1 1 6 }
-                 { 6 1 1 1 1 1 1 }
+variable cases { {}
+                 {100}
+                 {99 99}
+                 {98 1 99}
+                 {99 1 98}
+                 {1 2 3 0}
+                 {1 2 3 5}
+                 {1 2 2 1 0}
+                 {10 11 12 16 17}
+                 {1 1 1 1 1 1 6 }
+                 {6 1 1 1 1 1 1}
                }
 
 # Define the splitSum function

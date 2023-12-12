@@ -42,6 +42,26 @@ Test cases:
     
     Note: The return [[], []] may be null/nill/error in some languages.
 
+Software Needed
+  
+  On an OSX Sonoma (14.1 or greater) system:
+
+      - Pre-installed: Python 3, Perl 5, Ruby, TCL, ZSH, Bash
+      - Install Xcode for: C, C++, Objective-C, Swift
+      - Install Rust with rustup:
+          - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+      - Install Node.JS using installer at https://nodejs.org/en/download
+      - Install Go using package at https://go.dev/doc/install
+      - Install Java JDK using DMG at https://www.oracle.com/java/technologies/downloads/
+      - Use HomeBrew at https://brew.sh for:
+          - brew install clisp
+          - brew install php
+          - brew install postgressql
+
+      Note, PostgreSQL must be started and stopped as needed:
+          - brew services start postgresql@14
+          - brew services stop postgresql@14
+
 How to run:
 
     'make' will execute all compilation steps (same as 'make all').

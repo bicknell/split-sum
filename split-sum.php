@@ -68,6 +68,6 @@ for ($i = 0; $i < 1000000; $i++) {
 
 $end_time = microtime(true);
 $elapsed_time = $end_time - $start_time;
-echo "php: " . number_format($elapsed_time, 3) . " seconds\n";
+echo "php: " . number_format($elapsed_time, 3) . " seconds";
 ?>
 

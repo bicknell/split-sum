@@ -1,5 +1,5 @@
 
-DROP FUNCTION splitSum;
+DROP FUNCTION IF EXISTS splitSum;
 CREATE FUNCTION splitSum(nums INT[]) RETURNS TABLE (_leftPart INT[], _rightPart INT[]) AS $$
 DECLARE
     _totalleft INT := 0;
@@ -41,7 +41,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-DROP TABLE tests;
+DROP TABLE IF EXISTS tests;
 CREATE TABLE tests (
     id INT PRIMARY KEY,
     test INT[]

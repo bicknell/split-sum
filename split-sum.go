@@ -20,9 +20,11 @@ func splitSum(nums []int) [][]int {
     // Sum until the indexes meet in the middle.
     for right != left {
         if totalLeft <= totalRight {
-            totalLeft += nums[left++]
+            totalLeft += nums[left]
+            left++
         } else {
-            totalRight += nums[right--]
+            totalRight += nums[right]
+            right--
         }
     }
 

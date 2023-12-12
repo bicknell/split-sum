@@ -55,18 +55,26 @@ void testCases(bool toScreen) {
        if (toScreen) {
            std::cout << "c++: {";
            for (size_t j = 0; j < cases[i].size(); ++j) {
-               std::cout << cases[i][j] << ", ";
+               if (j) {
+                   std::cout << " ," << cases[i][j];
+               } else {
+                   std::cout << cases[i][j];
+               }
            }
            std::cout << "} -> {";
            std::vector<std::vector<int> > result = splitSum(cases[i]);
            for (size_t x = 0; x < result.size(); ++x) {
-               std::cout << " {";
+               std::cout << "{";
                for (size_t y = 0; y < result[x].size(); ++y) {
-                   std::cout << result[x][y] << ", ";
+                   if (y) {
+                       std::cout << " ," << result[x][y];
+                   } else {
+                       std::cout << result[x][y];
+                   }
                }
                std::cout << "}";
            }
-           std::cout << " }" << std::endl;
+           std::cout << "}" << std::endl;
        } else {
            splitSum(cases[i]);
        } 
