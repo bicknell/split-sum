@@ -1,39 +1,39 @@
 
--- SQL function to calculate splitSum
-CREATE OR REPLACE FUNCTION splitSum(nums INT[]) RETURNS TABLE (barSum INT[], bazSum INT[]) AS $$
+DROP FUNCTION splitSum;
+CREATE FUNCTION splitSum(nums INT[]) RETURNS TABLE (_leftPart INT[], _rightPart INT[]) AS $$
 DECLARE
-    totalbar INT := 0;
-    totalbaz INT := 0;
-    bar INT := 1;
-    baz INT := ARRAY_length(nums, 1);
+    _totalleft INT := 0;
+    _totalright INT := 0;
+    _left INT := 1;
+    _right INT := ARRAY_length(nums, 1);
 BEGIN
     -- Empty ARRAY or single element array.
-    IF baz < 2 THEN
-        barSum := ARRAY[]::INT[];
-        bazSum := ARRAY[]::INT[];
+    IF _right < 2 THEN
+        _leftPart := ARRAY[]::INT[];
+        _rightPart := ARRAY[]::INT[];
     ELSE
         -- Sum until the indexes meet in the middle.
-        WHILE baz != bar LOOP
-            IF totalbar <= totalbaz THEN
-                totalbar := totalbar + nums[bar];
-                bar := bar + 1;
+        WHILE _right != _left LOOP
+            IF _totalleft <= _totalright THEN
+                _totalleft := _totalleft + nums[_left];
+                _left := _left + 1;
             ELSE
-                totalbaz := totalbaz + nums[baz];
-                baz := baz - 1;
+                _totalright := _totalright + nums[_right];
+                _right := _right - 1;
             END IF;
         END LOOP;
 
-        -- Check middle in bar group.
-        IF totalbar + nums[bar] = totalbaz THEN
-            barSum := nums[1:bar];
-            bazSum := nums[baz + 1:];
-        -- Check middle in baz group.
-        ELSIF totalbar = totalbaz + nums[baz] THEN
-            barSum := nums[1:bar - 1];
-            bazSum := nums[baz:];
+        -- Check middle in _left group.
+        IF _totalleft + nums[_left] = _totalright THEN
+            _leftPart := nums[1:_left];
+            _rightPart := nums[_right + 1:];
+        -- Check middle in _right group.
+        ELSIF _totalleft = _totalright + nums[_right] THEN
+            _leftPart := nums[1:_left - 1];
+            _rightPart := nums[_right:];
         ELSE
-            barSum := ARRAY[]::INT[];
-            bazSum := ARRAY[]::INT[];
+            _leftPart := ARRAY[]::INT[];
+            _rightPart := ARRAY[]::INT[];
         END IF;
     END IF;
 
@@ -58,4 +58,4 @@ INSERT INTO tests VALUES (1, ARRAY[]::INT[]),
                          (10, '{ 1, 1, 1, 1, 1, 1, 6 }'),
                          (11, '{ 6, 1, 1, 1, 1, 1, 1 }');
 
-SELECT 'sql: ' as out1, test, splitSum(test) FROM tests ORDER BY id;
+SELECT 'sql: ' as program, test, splitSum(test) FROM tests ORDER BY id;
