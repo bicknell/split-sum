@@ -4,7 +4,7 @@
 #include <time.h>
 #include <string.h>
 
-int splitSum(int* nums, int numsSize, int* result[2], int returnColumnSizes[2]) {
+int splitSum(const int* nums, const int numsSize, int* result[2], int returnColumnSizes[2]) {
     int totalLeft = 0;
     int totalRight = 0;
     int left = 0;
