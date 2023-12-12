@@ -148,23 +148,23 @@ function and outputs the time in seconds taken for all runs.
 
                            Times  Array Slice x:y returns
 Rank   Seconds Language    Slower Start entries from          Comment
-1       0.074  C           1      0     No slice function.    Built in arrays of i32.
-2       0.313  Java        4.2    0     [x]   ... [y-1]       Built in arrays, of int.
-3       0.418  Go          5.6    0     [x]   ... [y-1]       Built in arrays i32.
-4       0.443  Rust        6.0    0     [x]   ... [y-1]       Box of Box of i32.
-5       0.622  JavaScript  8.4    0     [x]   ... [y-1]       Built in arrays, of int.
-6       1.935  TCL         26     0     [x]   ... [y]         Built in arrays untyped.
-7       1.997  C++         27     0     [x]   ... [y-1]       vector of vector of int.
-8       2.635  PHP         35     0     [x]   ... [y-1]       Built in arrays, untyped.
-9       2.912  Swift       39     0     [x]   ... [y]         Built in arrays of int.
-10      4.404  Objective-C 60     0     [x]   ... [y-1]       NSArray of NSArray of NSNumber.
-11      5.040  Ruby        68     0     [x]   ... [y]         Built in arrays, untyped.
-12      7.622  Python 3    103    0     [x]   ... [y-1]       Built in arrays, of int.
-13     18.680  Perl 5      252    0     [x]   ... [y]         Built in arrays, untyped.
-14     30.488  PostgreSQL  415    0     [x]   ... [y]         Built in arrays, of int.
-15     48.245  LISP        652    0     [x]   ... [y-1]       Built in lists, untyped.
-16    990.000  ZSH         13378  1     [x]   ... [y]         Built in arrays, untyped.
-17   2350.000  BASH        31756  0     [x]   ... [y]         Built in arrays, untyped.
+1       0.072  C             1.0  0     No slice function.    Built in arrays of i32.
+2       0.318  Java          4.4  0     [x]   ... [y-1]       Built in arrays, of int.
+3       0.415  Go            5.7  0     [x]   ... [y-1]       Built in arrays i32.
+4       0.445  Rust          6.1  0     [x]   ... [y-1]       Box of Box of i32.
+5       0.605  JavaScript    8.4  0     [x]   ... [y-1]       Built in arrays, of int.
+6       1.917  TCL          26.6  0     [x]   ... [y]         Built in arrays untyped.
+7       1.952  C++          27.1  0     [x]   ... [y-1]       vector of vector of int.
+8       2.643  PHP          36.7  0     [x]   ... [y-1]       Built in arrays, untyped.
+9       2.910  Swift        40.4  0     [x]   ... [y]         Built in arrays of int.
+10      4.290  Objective-C  59.5  0     [x]   ... [y-1]       NSArray of NSArray of NSNumber.
+11      4.907  Ruby         68.1  0     [x]   ... [y]         Built in arrays, untyped.
+12      7.361  Python 3    102.2  0     [x]   ... [y-1]       Built in arrays, of int.
+13     17.650  Perl 5      245.1  0     [x]   ... [y]         Built in arrays, untyped.
+14     33.493  PostgreSQL  465.1  0     [x]   ... [y]         Built in arrays, of int.
+15     46.861  LISP        650.8  0     [x]   ... [y-1]       Built in lists, untyped.
+16    860.000  ZSH         11944  1     [x]   ... [y]         Built in arrays, untyped.
+17   2350.000  BASH        32638  0     [x]   ... [y]         Built in arrays, untyped.
 
 The file benchmark-run.txt contains the run used to make this table.
 
