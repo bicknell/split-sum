@@ -42,7 +42,7 @@ Test cases:
     
     Note: The return [[], []] may be null/nill/error in some languages.
 
-Software Needed
+Software Needed:
   
   On an OSX Sonoma (14.1 or greater) system:
 
@@ -167,3 +167,17 @@ Rank   Seconds Language    Slower Start entries from          Comment
 17   2350.000  BASH        31756  0     [x]   ... [y]         Built in arrays, untyped.
 
 The file benchmark-run.txt contains the run used to make this table.
+
+Bugs/Known Limitations:
+
+    The code here is more for language comparison than to be fully optimized and
+    hardended.  As a result the following shortcomings are known.
+ 
+    C, Go, Rust, C++, and Swift all use "integer" arrays, typically 32 bit integers
+    on most platforms.  The total values in the splitSum function are also the same
+    data type, leading to an overflow possibility.
+
+    C, C++, Objective-C and Swift all pass by reference (pointers) to the splitSum
+    function, but do not check if these pointers are NULL/NIL before using them.
+
+    In all languages it is assumed the dataset can fit into memory.
