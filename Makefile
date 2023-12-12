@@ -59,7 +59,7 @@ runall: $(compiled_programs)
 	php --version | head -1
 	php split-sum.php
 	printf -- "------------------\n"
-	swiftc --version | head -1
+	swiftc --version 2>&1 | head -1
 	./split-sum-swift
 	printf -- "------------------\n"
 	cc -ObjC --version | head -1
