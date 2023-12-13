@@ -97,20 +97,28 @@ Language specific notes:
 
 Arrays:
 
-     Fortran and ZSH both start arrays at 1.
+     Fortran and ZSH both start arrays at 1 and index from 1 to
+     <length>.  All other languages start at 0 and index from 0
+     to <length - 1>.
 
      There appears to be no agreement on how array slices should
-     work.
+     work across programming languages.
 
 	 Go, Rust, Python 3, PHP, C++, Objective-C, LISP, Java and
 	 JavaScript all return a list exclusive of the end position.
 	 E.g.  Slicing [ 1 2 3 4 5 ] with a start of 1 and an end
 	 of 3 results in [ 2 3 ].
 
-	 TCL, Ruby, Swift, Perl 5, R, PostgreSQL, Fortran, BASH,
-	 and ZSH all return a list inclusive of the end position.
-	 E.g. Slicing [ 1 2 3 4 5 ] with a start of 1 and an end
-	 of 3 results in [ 2 3 4 ].
+	 TCL, Ruby, Swift, Perl 5, R, PostgreSQL, BASH, all return
+	 a list inclusive of the end position.  E.g. Slicing 
+         [ 1 2 3 4 5 ] with a start of 1 and an end of 3 results 
+         in [ 2 3 4 ].
+
+	 Fortran, and ZSH all return a list inclusive of the end
+	 positio, but also start arrays at 1!!!!  E.g. Slicing 
+         [ 1 2 3 4 5 ] with a start of 1 and an end of 3 results
+         in [ 1 2 3 ].
+
 
 LOC:
 
