@@ -97,8 +97,7 @@ Language specific notes:
 
 Arrays:
 
-     There is one language, ZSH, that starts arrays at 1 rather
-     than 0.  Don't use ZSH for scripting.
+     Fortran and ZSH both start arrays at 1.
 
      There appears to be no agreement on how array slices should
      work.
@@ -108,10 +107,10 @@ Arrays:
 	 E.g.  Slicing [ 1 2 3 4 5 ] with a start of 1 and an end
 	 of 3 results in [ 2 3 ].
 
-	 TCL, Ruby, Swift, Perl 5, R, PostgreSQL, BASH, and ZSH all
-	 return a list inclusive of the end position.  E.g. Slicing
-	 [ 1 2 3 4 5 ] with a start of 1 and an end of 3 results
-	 in [ 2 3 4 ].
+	 TCL, Ruby, Swift, Perl 5, R, PostgreSQL, Fortran, BASH,
+	 and ZSH all return a list inclusive of the end position.
+	 E.g. Slicing [ 1 2 3 4 5 ] with a start of 1 and an end
+	 of 3 results in [ 2 3 4 ].
 
 LOC:
 
@@ -140,6 +139,7 @@ LOC:
        93 split-sum.m           Objective-C
       100 split-sum.cpp         C++
       111 split-sum.c           C
+      136 split-sum.f90         Fortran
 
 Results:
 
@@ -149,24 +149,25 @@ Results:
 
                                Times  Array Slice x:y returns
     Rank   Seconds Language    Slower Start entries from          Comment
-    1       0.072  C             1.0  0     No slice function.    Built in arrays of i32.
-    2       0.318  Java          4.4  0     [x]   ... [y-1]       Built in arrays, of int.
-    3       0.415  Go            5.7  0     [x]   ... [y-1]       Built in arrays i32.
-    4       0.445  Rust          6.1  0     [x]   ... [y-1]       Box of Box of i32.
-    5       0.605  JavaScript    8.4  0     [x]   ... [y-1]       Built in arrays, of int.
-    6       1.917  TCL          26.6  0     [x]   ... [y]         Built in arrays untyped.
-    7       1.952  C++          27.1  0     [x]   ... [y-1]       vector of vector of int.
-    8       2.643  PHP          36.7  0     [x]   ... [y-1]       Built in arrays, untyped.
-    9       2.910  Swift        40.4  0     [x]   ... [y]         Built in arrays of int.
-    10      4.290  Objective-C  59.5  0     [x]   ... [y-1]       NSArray of NSArray of NSNumber.
-    11      4.907  Ruby         68.1  0     [x]   ... [y]         Built in arrays, untyped.
-    12      7.361  Python 3    102.2  0     [x]   ... [y-1]       Built in arrays, of int.
-    13     17.650  Perl 5      245.1  0     [x]   ... [y]         Built in arrays, untyped.
-    14     21.847  R           303.4  1     [x]   ... [y]         Built in lists, untyped.
-    15     33.493  PostgreSQL  465.1  0     [x]   ... [y]         Built in arrays, of int.
-    16     46.861  LISP        650.8  0     [x]   ... [y-1]       Built in lists, untyped.
-    17    860.000  ZSH         11944  1     [x]   ... [y]         Built in arrays, untyped.
-    18   2350.000  BASH        32638  0     [x]   ... [y]         Built in arrays, untyped.
+    1       0.064  Fortran       1.0  1     [x]   ... [y]         Built in arrays of integer.
+    2       0.072  C             1.1  0     No slice function.    Built in arrays of int.
+    3       0.318  Java          4.9  0     [x]   ... [y-1]       Built in arrays, of int.
+    4       0.415  Go            6.4  0     [x]   ... [y-1]       Built in arrays i32.
+    5       0.445  Rust          6.9  0     [x]   ... [y-1]       Box of Box of i32.
+    6       0.605  JavaScript    9.4  0     [x]   ... [y-1]       Built in arrays, of int.
+    7       1.917  TCL          29.9  0     [x]   ... [y]         Built in arrays untyped.
+    8       1.952  C++          30.5  0     [x]   ... [y-1]       vector of vector of int.
+    9       2.643  PHP          41.2  0     [x]   ... [y-1]       Built in arrays, untyped.
+    10      2.910  Swift        45.4  0     [x]   ... [y]         Built in arrays of int.
+    11      4.290  Objective-C  67.0  0     [x]   ... [y-1]       NSArray of NSArray of NSNumber.
+    12      4.907  Ruby         76.6  0     [x]   ... [y]         Built in arrays, untyped.
+    13      7.361  Python 3    115.0  0     [x]   ... [y-1]       Built in arrays, of int.
+    14     17.650  Perl 5      275.7  0     [x]   ... [y]         Built in arrays, untyped.
+    15     21.847  R           341.3  1     [x]   ... [y]         Built in lists, untyped.
+    16     33.493  PostgreSQL  523.3  0     [x]   ... [y]         Built in arrays, of int.
+    17     46.861  LISP        732.2  0     [x]   ... [y-1]       Built in lists, untyped.
+    18    860.000  ZSH         13437  1     [x]   ... [y]         Built in arrays, untyped.
+    19   2350.000  BASH        36718  0     [x]   ... [y]         Built in arrays, untyped.
 
     The file benchmark-run.txt contains the run used to make this table.
 

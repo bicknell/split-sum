@@ -4,12 +4,13 @@ compiled_programs = split-sum-c \
                     split-sum-swift \
                     split-sum-objc \
                     split-sum-c++ \
-                    splitSum.class
+                    splitSum.class \
+                    split-sum-fortran
 
 all: $(compiled_programs)
 
 clean:
-	rm -f split-sum-c split-sum-swift split-sum-objc split-sum-c++ splitSum.class
+	rm -f split-sum-c split-sum-swift split-sum-objc split-sum-c++ splitSum.class split-sum-fortran
 	rm -rf Cargo.lock target/
 
 split-sum-c: split-sum.c
@@ -30,8 +31,14 @@ split-sum-c++: split-sum.cpp
 splitSum.class: splitSum.java
 	javac splitSum.java
 
+split-sum-fortran: split-sum.f90
+	gfortran -O3 -o split-sum-fortran split-sum.f90
+
 .SILENT: runall
 runall: $(compiled_programs)
+	printf -- "------------------\n"
+	gfortran --version | head -1
+	./split-sum-fortran
 	printf -- "------------------\n"
 	cc --version | head -1
 	./split-sum-c
