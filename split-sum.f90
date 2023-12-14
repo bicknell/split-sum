@@ -2,27 +2,36 @@
 program main
     implicit none
 
-    integer, parameter :: max_test_cases = 11, max_nums = 8
-    integer, dimension(max_test_cases,max_nums) :: test_cases
+    ! Need a custom type to get an "array of arrays".
+    type :: type_int_alloc
+        integer, dimension(:), allocatable :: data
+    end type type_int_alloc
+
     integer :: i
     real :: start_time
     real :: end_time
 
     ! Global so they aren't reallcoated on the stack each invocation.
-    test_cases = reshape(&
-         (/0,   0,   0,   0,   0,   0,   0,   0 ,&
-           1, 100,   0,   0,   0,   0,   0,   0 ,&
-           2,  99,  99,   0,   0,   0,   0,   0 ,&
-           3,  98,   1,  99,   0,   0,   0,   0 ,&
-           3,  99,   1,  98,   0,   0,   0,   0 ,&
-           4,   1,   2,   3,   0,   0,   0,   0 ,&
-           4,   1,   2,   3,   5,   0,   0,   0 ,&
-           5,   1,   2,   2,   1,   0,   0,   0 ,&
-           5,  10,  11,  12,  16,  17,   0,   0 ,&
-           7,   1,   1,   1,   1,   1,   1,   6 ,&
-           7,   6,   1,   1,   1,   1,   1,   1 /), shape(test_cases), order=(/2,1/))
+    type(type_int_alloc), dimension(:), allocatable :: test_cases
+    integer, allocatable :: resultLeft(:)
+    integer, allocatable :: resultRight(:)
 
-
+    allocate(test_cases(11))
+    allocate(test_cases(1)%data(0))
+    allocate(test_cases(2)%data,  source=[100])
+    allocate(test_cases(3)%data,  source=[99, 99])
+    allocate(test_cases(4)%data,  source=[99, 1, 98])
+    allocate(test_cases(5)%data,  source=[98, 1, 99])
+    allocate(test_cases(6)%data,  source=[1, 2, 3, 0])
+    allocate(test_cases(7)%data,  source=[1, 2, 3, 5])
+    allocate(test_cases(8)%data,  source=[1, 2, 2, 1, 0])
+    allocate(test_cases(9)%data,  source=[10, 11, 12, 16, 17])
+    allocate(test_cases(10)%data, source=[1, 1, 1, 1, 1, 1, 6])
+    allocate(test_cases(11)%data, source=[6, 1, 1, 1, 1, 1, 1])
+    ! Must be as big as the longest entry.
+    allocate(resultLeft(7))
+    allocate(resultRight(7))
+    
     call testCases(1)
 
     call cpu_time(start_time)
@@ -87,46 +96,41 @@ contains
     ! Test cases
     subroutine testCases(toScreen)
         integer, intent(in) :: toScreen
-        integer, dimension(max_nums) :: resultLeft
-        integer, dimension(max_nums) :: resultRight
         integer, dimension(2) :: returnColumnSizes
         character (len=100) :: fmt
         integer :: length
         integer :: i
 
         ! Process test test_cases
-        do i = 1, max_test_cases
-            length = test_cases(i, 1)
-            call splitSum(test_cases(i,2:), length, resultLeft, resultRight, returnColumnSizes)
+        do i = 1, size(test_cases)
+            length = size(test_cases(i)%data)
+            call splitSum(test_cases(i)%data, length, resultLeft, resultRight, returnColumnSizes)
             if (toScreen > 0) then
                 if (length == 0) then
-                    write(*, "('Fortran: [] -> [')", advance="no")
+                    write(*, "(a)", advance="no") 'Fortran: [] -> ['
                 else
-                    write(fmt, "('(''Fortran: ['', ',i0,'(I0:, '', ''))')") length
-!            print *, "Length: ", length, " Format: ", fmt
-                    write(*, fmt, advance="no") test_cases(i,2:length)
-                    write(*, "('] -> [')", advance="no")
+                    write(fmt, "('(a,', i0, '(I0,:, '', ''))')") length
+                    write(*, fmt, advance="no") 'Fortran: [', test_cases(i)%data
+                    write(*, "(a)", advance="no") '] -> ['
                 endif
 
                 if (returnColumnSizes(1) == 0) then
-                    write(*, "('[],')", advance="no")
+                    write(*, "(a)", advance="no") '[]'
                 else
-                    write(*, "('[')", advance="no")
-                    write(fmt, "('(', i0, '(I0,:, '', ''))')"  ) returnColumnSizes(1)
-                    write(*, fmt, advance="no") resultLeft(1:returnColumnSizes(1))
-                    write(*, "(']')", advance="no")
+                    write(fmt, "('(a,', i0, '(I0,:, '', ''))')") returnColumnSizes(1)
+                    write(*, fmt, advance="no") '[', resultLeft(1:returnColumnSizes(1))
+                    write(*, "(a)", advance="no") '],'
                 endif
 
                 if (returnColumnSizes(2) == 0) then
-                    write(*, "('[]')", advance="no")
+                    write(*, "(a)", advance="no") '[]'
                 else
-                    write(*, "('[')", advance="no")
-                    write(fmt, "('(', i0, '(I0,:, '', ''))')"  ) returnColumnSizes(2)
-                    write(*, fmt, advance="no") resultRight(1:returnColumnSizes(2))
-                    write(*, "(']')", advance="no")
+                    write(fmt, "('(a,', i0, '(I0,:, '', ''))')") returnColumnSizes(2)
+                    write(*, fmt, advance="no") '[', resultRight(1:returnColumnSizes(2))
+                    write(*, "(a)", advance="no") ']'
                 endif
 
-                write(*,"(']')")
+                write(*, "(a)") ']'
 
             end if
         end do
