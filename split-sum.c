@@ -53,18 +53,22 @@ int splitSum(const int* nums, const int numsSize, int* result[2], int returnColu
 // Globals so they aren't reallcoated on the stack each invocation.
 int* result[2];
 int returnColumnSizes[2];
-int cases[][8] = { {   0,   0,   0,   0,   0,   0,   0,   0 },
-                   {   1, 100,   0,   0,   0,   0,   0,   0 },
-                   {   2,  99,  99,   0,   0,   0,   0,   0 },
-                   {   3,  98,   1,  99,   0,   0,   0,   0 },
-                   {   3,  99,   1,  98,   0,   0,   0,   0 },
-                   {   4,   1,   2,   3,   0,   0,   0,   0 },
-                   {   4,   1,   2,   3,   5,   0,   0,   0 },
-                   {   5,   1,   2,   2,   1,   0,   0,   0 },
-                   {   5,  10,  11,  12,  16,  17,   0,   0 },
-                   {   7,   1,   1,   1,   1,   1,   1,   6 },
-                   {   7,   6,   1,   1,   1,   1,   1,   1 },
-                 };
+// list must be longer than the longest case
+// recommend list be a multiple of 64 bits (8 bytes) for alignment
+struct caseHolder {
+    int list[16];
+    int elements;
+} cases[] = { { .list = { 0 }, .elements = 0},
+              { .list = { 100 }, .elements = 1},
+              { .list = { 99, 99 }, .elements = 2},
+              { .list = { 99, 1, 98 }, .elements = 3},
+              { .list = { 98, 1, 99 }, .elements = 3},
+              { .list = { 1, 2, 3, 0 }, .elements = 4},
+              { .list = { 1, 2, 2, 1, 0 }, .elements = 5},
+              { .list = { 10, 11, 12, 16, 17 }, .elements = 5},
+              { .list = { 1, 1, 1, 1, 1, 1, 6 }, .elements = 7},
+              { .list = { 6, 1, 1, 1, 1, 1, 1 }, .elements = 7},
+            };
 
 // Test cases
 void testCases(int toScreen) {
@@ -72,29 +76,37 @@ void testCases(int toScreen) {
     for (int i = 0;i < (sizeof(cases) / sizeof(cases[0]));++i) {
         if (toScreen) {
             printf("c: [");
-            for (int j = 1;j < cases[i][0] + 1;++j) {
-                printf("%s%d", j > 1  ? "," : "", cases[i][j]);
+            for (int j = 0;j < cases[i].elements;++j) {
+                printf("%s%d", j ? "," : "", cases[i].list[j]);
             }
             printf("] -> [[");
-            splitSum(&cases[i][1], cases[i][0], result, returnColumnSizes);
+            splitSum(cases[i].list, cases[i].elements, result, returnColumnSizes);
             for (int j = 0;j < returnColumnSizes[0];++j) {
                 printf("%s%d", j ? "," : "", result[0][j]);
             }
-            printf("] [");
+            printf("],[");
             for (int j = 0;j < returnColumnSizes[1];++j) {
                 printf("%s%d", j ? "," : "", result[1][j]);
             }
             printf("]]\n");
         } else {
-            splitSum(&cases[i][1], cases[i][0], result, returnColumnSizes);
+            splitSum(cases[i].list, cases[i].elements, result, returnColumnSizes);
         }
     }
 }
 
 int main() {
+    int max = 0;
+
+    for (int i = 0;i < (sizeof(cases) / sizeof(cases[0]));++i) {
+        if (cases[i].elements > max) {
+            max = cases[i].elements;
+        }
+    } 
+
     // Pre-allocate return space.
-    result[0] = (int*)malloc(sizeof(cases[0]) / sizeof(cases[0][0]));
-    result[1] = (int*)malloc(sizeof(cases[0]) / sizeof(cases[0][0]));
+    result[0] = (int*)malloc(max * sizeof(int));
+    result[1] = (int*)malloc(max * sizeof(int));
 
     testCases(1);
 
