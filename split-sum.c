@@ -73,16 +73,16 @@ void testCases(int toScreen) {
         if (toScreen) {
             printf("c: [");
             for (int j = 1;j < cases[i][0] + 1;++j) {
-                printf("%s%d", j == 1 ? "" : " ,", cases[i][j]);
+                printf("%s%d", j > 1  ? "," : "", cases[i][j]);
             }
             printf("] -> [[");
             splitSum(&cases[i][1], cases[i][0], result, returnColumnSizes);
             for (int j = 0;j < returnColumnSizes[0];++j) {
-                printf("%s%d", j == 1 ? "" : " ,", result[0][j]);
+                printf("%s%d", j ? "," : "", result[0][j]);
             }
             printf("] [");
             for (int j = 0;j < returnColumnSizes[1];++j) {
-                printf("%s%d", j == 1 ? "" : " ,", result[1][j]);
+                printf("%s%d", j ? "," : "", result[1][j]);
             }
             printf("]]\n");
         } else {
