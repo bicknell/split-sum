@@ -8,29 +8,34 @@ program main
     end type type_int_alloc
 
     integer :: i
+    integer :: max = 0
     real :: start_time
     real :: end_time
 
     ! Global so they aren't reallcoated on the stack each invocation.
-    type(type_int_alloc), dimension(:), allocatable :: test_cases
+    type(type_int_alloc) :: cases(11)
     integer, allocatable :: resultLeft(:)
     integer, allocatable :: resultRight(:)
 
-    allocate(test_cases(11))
-    allocate(test_cases(1)%data(0))
-    allocate(test_cases(2)%data,  source=[100])
-    allocate(test_cases(3)%data,  source=[99, 99])
-    allocate(test_cases(4)%data,  source=[99, 1, 98])
-    allocate(test_cases(5)%data,  source=[98, 1, 99])
-    allocate(test_cases(6)%data,  source=[1, 2, 3, 0])
-    allocate(test_cases(7)%data,  source=[1, 2, 3, 5])
-    allocate(test_cases(8)%data,  source=[1, 2, 2, 1, 0])
-    allocate(test_cases(9)%data,  source=[10, 11, 12, 16, 17])
-    allocate(test_cases(10)%data, source=[1, 1, 1, 1, 1, 1, 6])
-    allocate(test_cases(11)%data, source=[6, 1, 1, 1, 1, 1, 1])
-    ! Must be as big as the longest entry.
-    allocate(resultLeft(7))
-    allocate(resultRight(7))
+    allocate(cases(1)%data(0))
+    allocate(cases(2)%data,  source=[100])
+    allocate(cases(3)%data,  source=[99, 99])
+    allocate(cases(4)%data,  source=[99, 1, 98])
+    allocate(cases(5)%data,  source=[98, 1, 99])
+    allocate(cases(6)%data,  source=[1, 2, 3, 0])
+    allocate(cases(7)%data,  source=[1, 2, 3, 5])
+    allocate(cases(8)%data,  source=[1, 2, 2, 1, 0])
+    allocate(cases(9)%data,  source=[10, 11, 12, 16, 17])
+    allocate(cases(10)%data, source=[1, 1, 1, 1, 1, 1, 6])
+    allocate(cases(11)%data, source=[6, 1, 1, 1, 1, 1, 1])
+
+    do i = 1, size(cases)
+        if (max < size(cases(i)%data)) then
+            max = size(cases(i)%data)
+        end if
+    end do
+    allocate(resultLeft(max))
+    allocate(resultRight(max))
     
     call testCases(1)
 
@@ -101,16 +106,16 @@ contains
         integer :: length
         integer :: i
 
-        ! Process test test_cases
-        do i = 1, size(test_cases)
-            length = size(test_cases(i)%data)
-            call splitSum(test_cases(i)%data, length, resultLeft, resultRight, returnColumnSizes)
+        ! Process test cases
+        do i = 1, size(cases)
+            length = size(cases(i)%data)
+            call splitSum(cases(i)%data, length, resultLeft, resultRight, returnColumnSizes)
             if (toScreen > 0) then
                 if (length == 0) then
                     write(*, "(a)", advance="no") 'Fortran: [] -> ['
                 else
                     write(fmt, "('(a,', i0, '(I0,:, '', ''))')") length
-                    write(*, fmt, advance="no") 'Fortran: [', test_cases(i)%data
+                    write(*, fmt, advance="no") 'Fortran: [', cases(i)%data
                     write(*, "(a)", advance="no") '] -> ['
                 endif
 
