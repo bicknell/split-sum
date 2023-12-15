@@ -58,6 +58,7 @@ Software Needed:
             - brew install php
             - brew install postgressql
             - brew install r
+            - brew install erlang
 
     Note, PostgreSQL must be started and stopped as needed:
         - brew services start postgresql@14
