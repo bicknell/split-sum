@@ -11,7 +11,10 @@ compiled_programs = split-sum-c \
 all: $(compiled_programs)
 
 clean:
-	rm -f split-sum-c split-sum-swift split-sum-objc split-sum-c++ splitSum.class split-sum-fortran
+	rm -f $(compiled_programs)
+#	# Erlang files.
+	rm -f .NetrwMessage.swp erl_crash.dump
+#	# Rust files.
 	rm -rf Cargo.lock target/
 
 split-sum-c: split-sum.c
