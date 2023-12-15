@@ -179,7 +179,7 @@ Results:
     4       0.415  Go            5.7  0     [x]   ... [y-1]       Built in arrays i32.
     5       0.445  Rust          6.1  0     [x]   ... [y-1]       Box of Box of i32.
     6       0.605  JavaScript    8.4  0     [x]   ... [y-1]       Built in arrays, of int.
-    7       1.751  Erlang       24.3  1     list:split()          Built in lists, of int.
+    7       1.538  Erlang       21.3  1     list:split()          Built in lists, of int.
     8       1.917  TCL          26.6  0     [x]   ... [y]         Built in arrays untyped.
     9       1.952  C++          27.1  0     [x]   ... [y-1]       vector of vector of int.
     10      2.643  PHP          36.7  0     [x]   ... [y-1]       Built in arrays, untyped.
