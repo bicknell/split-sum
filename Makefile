@@ -5,7 +5,8 @@ compiled_programs = split-sum-c \
                     split-sum-objc \
                     split-sum-c++ \
                     splitSum.class \
-                    split-sum-fortran
+                    split-sum-fortran \
+                    split_sum.beam
 
 all: $(compiled_programs)
 
@@ -34,6 +35,9 @@ splitSum.class: splitSum.java
 split-sum-fortran: split-sum.f90
 	gfortran -O3 -o split-sum-fortran split-sum.f90
 
+split_sum.beam: split_sum.erl
+	erlc split_sum.erl
+
 .SILENT: runall
 runall: $(compiled_programs)
 	printf -- "------------------\n"
@@ -55,6 +59,9 @@ runall: $(compiled_programs)
 	printf "JavaScript (node.js) version"
 	node --version
 	node split-sum.js
+	printf -- "------------------\n"
+	erl -noshell -version -s init stop
+	erl -noshell -s split_sum start -s init stop
 	printf -- "------------------\n"
 	printf -- "TCL version "
 	printf -- 'puts $$tcl_version' | tclsh

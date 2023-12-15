@@ -100,8 +100,8 @@ Arrays:
 
     Indexing: 
 
-        Fortran R, and ZSH both start arrays at 1 and index from
-        1 to <length>.  All other languages start at 0 and index
+        Fortran R, Erlang, and ZSH both start arrays at 1 and index
+        from 1 to <length>.  All other languages start at 0 and index
         from 0 to <length - 1>.
 
         In Fortran is it possible to start arrays at any index, a
@@ -115,6 +115,8 @@ Arrays:
     Slices
 
         C has no slice function, elements are copied with memcpy.
+
+        Erlang no slice function, but it does have a list:split().
 
         Go, Rust, Python 3, PHP, C++, Objective-C, LISP, Java and
         JavaScript all return a list exclusive of the end position.
@@ -143,6 +145,7 @@ LOC:
     Lines Filename              Lanugage
        58 split-sum.py          Python 3
        59 split-sum.lsp         LISP
+       67 split_sum.erl         Erlang
        68 split-sum-create.sql  SQL (Two files together.)
           split-sum-query.sql
        69 split-sum.js          JavaScript
@@ -175,19 +178,20 @@ Results:
     4       0.415  Go            5.7  0     [x]   ... [y-1]       Built in arrays i32.
     5       0.445  Rust          6.1  0     [x]   ... [y-1]       Box of Box of i32.
     6       0.605  JavaScript    8.4  0     [x]   ... [y-1]       Built in arrays, of int.
-    7       1.917  TCL          26.6  0     [x]   ... [y]         Built in arrays untyped.
-    8       1.952  C++          27.1  0     [x]   ... [y-1]       vector of vector of int.
-    9       2.643  PHP          36.7  0     [x]   ... [y-1]       Built in arrays, untyped.
-    10      2.910  Swift        40.4  0     [x]   ... [y]         Built in arrays of int.
-    11      4.290  Objective-C  59.5  0     [x]   ... [y-1]       NSArray of NSArray of NSNumber.
-    12      4.907  Ruby         68.1  0     [x]   ... [y]         Built in arrays, untyped.
-    13      7.361  Python 3    102.2  0     [x]   ... [y-1]       Built in arrays, of int.
-    14     17.650  Perl 5      245.1  0     [x]   ... [y]         Built in arrays, untyped.
-    15     21.847  R           303.4  1     [x]   ... [y]         Built in lists, untyped.
-    16     33.493  PostgreSQL  465.1  0     [x]   ... [y]         Built in arrays, of int.
-    17     46.861  LISP        650.8  0     [x]   ... [y-1]       Built in lists, untyped.
-    18    860.000  ZSH         11944  1     [x]   ... [y]         Built in arrays, untyped.
-    19   2350.000  BASH        32638  0     [x]   ... [y]         Built in arrays, untyped.
+    7       1.751  Erlang       24.3  1     list:split()          Built in lists, of int.
+    8       1.917  TCL          26.6  0     [x]   ... [y]         Built in arrays untyped.
+    9       1.952  C++          27.1  0     [x]   ... [y-1]       vector of vector of int.
+    10      2.643  PHP          36.7  0     [x]   ... [y-1]       Built in arrays, untyped.
+    11      2.910  Swift        40.4  0     [x]   ... [y]         Built in arrays of int.
+    12      4.290  Objective-C  59.5  0     [x]   ... [y-1]       NSArray of NSArray of NSNumber.
+    13      4.907  Ruby         68.1  0     [x]   ... [y]         Built in arrays, untyped.
+    14      7.361  Python 3    102.2  0     [x]   ... [y-1]       Built in arrays, of int.
+    15     17.650  Perl 5      245.1  0     [x]   ... [y]         Built in arrays, untyped.
+    16     21.847  R           303.4  1     [x]   ... [y]         Built in lists, untyped.
+    17     33.493  PostgreSQL  465.1  0     [x]   ... [y]         Built in arrays, of int.
+    18     46.861  LISP        650.8  0     [x]   ... [y-1]       Built in lists, untyped.
+    19    860.000  ZSH         11944  1     [x]   ... [y]         Built in arrays, untyped.
+    20   2350.000  BASH        32638  0     [x]   ... [y]         Built in arrays, untyped.
 
     The file benchmark-run.txt contains the run used to make this table.
 
